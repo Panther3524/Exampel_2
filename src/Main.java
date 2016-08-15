@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.SystemFlavorMap;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main
 {
@@ -15,6 +19,10 @@ public class Main
 
     private JTextField txt_name;
     private JTextField txt_family;
+
+    private JButton btn_save;
+    private JButton btn_exit;
+    private JButton btn_clear;
 
     public void initView()
     {
@@ -52,6 +60,37 @@ public class Main
         txt_family=new JTextField();
         txt_family.setBounds(70,50,200,30);
 
+        btn_save=new JButton("Save");
+        btn_save.setBounds(10,10,100,30);
+        btn_save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name=txt_name.getText();
+                String family=txt_family.getText();
+
+                System.out.println("Name  Is : "+name+"\nFamily Is : "+family);
+            }
+        });
+
+        btn_clear=new JButton("Clear");
+        btn_clear.setBounds(jPanel2.getWidth()/2-50,jPanel2.getHeight()/2-15,100,30);
+        btn_clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txt_name.setText("");
+                txt_family.setText("");
+            }
+        });
+
+        btn_exit=new JButton("Exit");
+        btn_exit.setBounds(jPanel3.getWidth()/2-50,jPanel3.getHeight()/2-15,100,30);
+        btn_exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         Login_Frame.add(jPanel1);
         Login_Frame.add(jPanel2);
         Login_Frame.add(jPanel3);
@@ -61,14 +100,25 @@ public class Main
         jPanel1.add(lbl_family);
         jPanel1.add(txt_family);
 
+        jPanel2.add(btn_save);
+        jPanel2.add(btn_clear);
+
+        jPanel3.add(btn_exit);
+
         Login_Frame.setVisible(true);
+
         jPanel1.setVisible(true);
         jPanel2.setVisible(true);
         jPanel3.setVisible(true);
+
         lbl_name.setVisible(true);
         txt_name.setVisible(true);
         lbl_family.setVisible(true);
         txt_family.setVisible(true);
+
+        btn_save.setVisible(true);
+        btn_clear.setVisible(true);
+        btn_exit.setVisible(true);
     }
     public static void main(String[] args)
     {
